@@ -1,0 +1,18 @@
+.main-header-web {
+    background-color: rgba(0, 0, 0, 0.537);
+    padding: 20px 0px;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    color: wheat;
+}
+
+.main-header-web h3{
+    font-weight: 600;
+}
+
+.main-header-web .nav-link {
+    font-weight: 400;
+    color: wheat;
+    padding: 0px 5px;
+}
