@@ -65,7 +65,9 @@ export default function DangNhap(props) {
 
     let handleSubmit = () => {
         userLoginService.DangNhap(userLogin.values).then(res => {
+            localStorage.setItem('taiKhoan',userLogin.values.taiKhoan);
             alert(`Hello ${res.data.taiKhoan}`);
+            window.location.reload();
             props.history.push('/trangchu');
         })
         .catch(err => {

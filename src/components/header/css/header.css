@@ -16,3 +16,9 @@
     color: wheat;
     padding: 0px 5px;
 }
+
+
+.main-header-web .nav-user a {
+    border-left: 1px solid wheat;
+    padding-left: 20px;
+}

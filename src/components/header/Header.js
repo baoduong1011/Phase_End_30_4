@@ -2,6 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './css/header.css'
 export default function Header() {
+
+    let taiKhoan = localStorage.getItem('taiKhoan');
+    console.log(taiKhoan);
+
     return (
         <div style={{backgroundColor:'rgba(0, 0, 0, 0.537)'}} className='main-header-web'>
             <div className='container-fluid'>
@@ -17,7 +21,7 @@ export default function Header() {
                                         <NavLink style={{color:'wheat'}} className="nav-link" to='/trangchu'>Trang chủ <span className="sr-only">(current)</span></NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/phímapchieu'>Phim sắp chiếu</NavLink>
+                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/phímapchieu'>Phim mới</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         <NavLink style={{color:'wheat'}} className="nav-link" to='/dangnhap'>Đăng nhập</NavLink>
@@ -25,8 +29,8 @@ export default function Header() {
                                     <li className="nav-item">
                                         <NavLink style={{color:'wheat'}} className="nav-link" to='/dangky'>Đăng ký</NavLink>
                                     </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Tài khoản</a>
+                                    <li className="nav-item nav-user">
+                                        <a  style={{color:'wheat'}} className="nav-link" href="#"> <i class="fa fa-user"></i> {taiKhoan}</a>
                                     </li>
                                 </ul>
                             </div>

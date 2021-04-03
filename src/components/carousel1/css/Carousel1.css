@@ -1,0 +1,64 @@
+.main-carousel1 .video-background-carousel1 video {
+    position: relative;
+
+}
+
+
+.main-carousel1 .body-carousel1 {
+    position: absolute;
+    top: 10%;
+    left:6%;
+}
+
+.main-carousel1 .sub-film h6 {
+    font-weight: 800;
+}
+
+.main-carousel1 .img-film img {
+    position: relative;
+}
+
+.main-carousel1 .sub-film {
+    background: rgba(0, 0, 0, 0.544);
+    /* padding: 20px 5px; */
+    position: absolute;
+    top:0%;
+    /* width: 0.1%; */
+    /* height: 240px; */
+    /* left:0; */
+    /* padding-right:60px; */
+    padding: 175px 0px;
+    width: 0.484%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:30%;
+    border-radius: 10px;
+    /* display: none; */
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+
+
+.main-carousel1 .img-film:hover .sub-film {
+    /* visibility:initial;
+    opa */
+    opacity: 1;
+    visibility: inherit;
+}
+
+.main-carousel1 .sub-film .dat-ve {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    background-color: rgba(255, 0, 0, 0.428);
+    color: wheat;
+    transition: 0.5s;
+}
+
+.main-carousel1 .sub-film .dat-ve:hover {
+    color: red;
+    background: rgba(245, 222, 179, 0.449);
+}
