@@ -8,4 +8,7 @@ class ChiTietPhimSer {
     }
 }
 
+
+
 export default ChiTietPhimSer;
+// export default ChiTietHeThongRap;

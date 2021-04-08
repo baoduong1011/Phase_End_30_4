@@ -1,6 +1,10 @@
 .main-chi-tiet-film {
-    padding-top: 80px;
 }
+
+.main-chi-tiet-film .bg1-chi-tiet-phim {
+    padding-top: 90px;
+}
+
 
 .main-chi-tiet-film .bg1-chi-tiet-phim {
     background: #252839;
@@ -45,7 +49,7 @@
 
 .main-chi-tiet-film .mo-ta-chi-tiet-phim {
     margin-top: 35%;
-    margin-left: 10%;
+    margin-left: 20%;
     color: #01fe87;
 }
 .main-chi-tiet-film i {
@@ -61,13 +65,61 @@
     }
 }
 
-.main-chi-tiet-film .bg2-main-chi-tiet-phim video {
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .bg2-video  {
     position: relative;
 }
 
-.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap {
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .bg2-video .quan-ly-rap {
     position:absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
+    
 }
 
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .selectAction select {
+    padding: 10px 20px;
+    /* margin: 0px 50px; */
+    background: orange;
+    color: black;
+    font-weight: 800;
+}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .selectAction {}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-bottom: 10%;
+}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .thong-tin-dat-ve {
+    margin-top: 5%;
+    color:wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    
+}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .thong-tin-dat-ve .col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:30px 50px;
+    background: rgba(0, 0, 0, 0.503);
+    border: 1px solid wheat;
+}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .thong-tin-dat-ve .col i { 
+    padding:10px 30px;
+
+}
+
+.main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .thong-tin-dat-ve .col:hover {
+    background: rgba(245, 222, 179, 0.496);
+    color: black;
+}

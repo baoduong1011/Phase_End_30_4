@@ -1,57 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { useParams } from 'react-router'
-import { chiTietPhimSer, thongTinRapSer } from '../../services/service';
+import { chiTietHeThongRap, chiTietPhimSer, layThongTinLichChieu, thongTinRapSer } from '../../services/service';
 import './css/ChiTietPhim.css';
 import Video1 from './chitietphim.mp4';
+import { useDispatch, useSelector } from 'react-redux';
+import { a } from '@react-spring/web';
+import DAT_VE_REDUCER from '../../redux/actions/action';
+import LOGO_RAP_PHIM from '../../redux/actions/action';
 export default function ChiTietPhim(props) {
     let maPhim = props.match.params.idFilm;
     // console.log(maPhim);
     const [chiTietPhim, setChiTietPhim] = useState({
         chiTiet: {},
-        arrayMaHeThongRap:[],
-
+        heThongRapChieu: [{ maHeThongRap: 'Chọn rạp', tenHeThongRap: 'Chọn rạp' }],
+        maHeThongRap: [],
+        maHeThongRap: '',
+        cumRapChieu: [],
+        maCumRap: '',
+        arrayMaCumRap: [{ maCumRap: 'Reload lại tại đây trước khi chọn', tenCumRap: 'Reload lại tại đây trước khi chọn' }],
+        lichChieu: [{ ngayChieuGioChieu: 'Reload lại tại đây trước khi chọn', maLichChieu: 'Reload lại tại đây trước khi chọn' }],
+        maLichChieu: '',
+        tenCumRap: '',
+        tenHeThongRap: '',
+        logo: '',
     })
-    // console.log(chiTietPhim.chiTiet);
-    let layThongTinRapChieu = () => {
-        let index = 0;
-        let arrayMaHeThongRap = [{maHeThongRap:'',maCumRap:''}];
-        let arrayLichChieu = chiTietPhim.chiTiet.lichChieu;
-        for(let key in arrayLichChieu) {
-            console.log(arrayLichChieu[key].thongTinRap);
-            index = arrayMaHeThongRap.findIndex(x => x.maCumRap === arrayLichChieu[key].thongTinRap.maCumRap );
-            if(index === -1) {
-                arrayMaHeThongRap.push({
-                    maCumRap: arrayLichChieu[key].thongTinRap.maCumRap,
-                    maHeThongRap: arrayLichChieu[key].thongTinRap.maHeThongRap
-                })
-            }
-        }
-        setChiTietPhim({...chiTietPhim,arrayMaHeThongRap: arrayMaHeThongRap});
-    }
-    let renderRapPhim = () => {
-       return chiTietPhim.arrayMaHeThongRap.map((img,index) => {
-           let imgSrc = "";
-            thongTinRapSer.LoadThongTinRap(img.maHeThongRap).then(res => {
-                imgSrc = res.data.logo;
-            })
-            return <div key={index}>
-                <img src={imgSrc} />
-            </div>
-       })
-    }
 
-    useEffect(() => {
-        for(let key = 0 ; key < chiTietPhim.arrayMaHeThongRap.length ; key++) {
-            thongTinRapSer.LoadThongTinRap(chiTietPhim.arrayMaHeThongRap[key].maHeThongRap).then(res => {
-                console.log(res.data);
-            })
-        }
-    },[chiTietPhim.arrayMaHeThongRap])
-
-    useEffect(() => {
-        layThongTinRapChieu();
-    },[chiTietPhim.chiTiet])
-    console.log(chiTietPhim.arrayMaHeThongRap);
     useEffect(() => {
         chiTietPhimSer.LoadChiTietPhim(maPhim).then(res => {
             setChiTietPhim({ ...chiTietPhim, chiTiet: res.data });
@@ -60,6 +33,119 @@ export default function ChiTietPhim(props) {
                 console.log(err.response.data);
             })
     }, [])
+
+    useEffect(() => {
+        layThongTinLichChieu.LoadThongTinLichChieu(maPhim).then(res => {
+            let newHeThongRapChieu = [];
+            newHeThongRapChieu = res.data.heThongRapChieu;
+            // console.log(res.data.heThongRapChieu)
+            setChiTietPhim({ ...chiTietPhim, heThongRapChieu: newHeThongRapChieu })
+        })
+            .catch(err => {
+                console.log(err.response.data);
+            })
+    }, [chiTietPhim.chiTiet])
+
+    // console.log(chiTietPhim.heThongRapChieu);
+
+    // console.log('Ma He Thong Rap: ',chiTietPhim.maHeThongRap);
+
+    let onnChange1 = (e) => {
+        setChiTietPhim({ ...chiTietPhim, maHeThongRap: e.target.value, tenHeThongRap: e.target.name });
+    }
+
+
+    let renderChange1 = () => {
+        return chiTietPhim.heThongRapChieu.map((rap, index) => {
+            return <option value={rap.maHeThongRap} name={rap.tenHeThongRap}>
+                {rap.tenHeThongRap}
+            </option>
+        })
+    }
+
+
+    useEffect(() => {
+        let newLogo = '';
+        thongTinRapSer.LoadThongTinRap(chiTietPhim.maHeThongRap).then(res => {
+            for(let key of res.data) {
+                dispatch({
+                    type: 'LOGO_RAP_PHIM',
+                    logo: key.logo
+                })
+            }
+        })
+
+        for (let key of chiTietPhim.heThongRapChieu) {
+            if (key.maHeThongRap === chiTietPhim.maHeThongRap) {
+                setChiTietPhim({ ...chiTietPhim, cumRapChieu: key.cumRapChieu,logo: newLogo })
+            }
+        }
+    }, [chiTietPhim.maHeThongRap])
+
+
+
+    useEffect(() => {
+        let arrayTemp = [{ maCumRap: 'Reload lại tại đây trước khi chọn', tenCumRap: 'Reload lại tại đây trước khi chọn' }];
+        for (let key of chiTietPhim.cumRapChieu) {
+            arrayTemp.push({
+                tenCumRap: key.tenCumRap,
+                maCumRap: key.maCumRap
+            })
+        }
+        setChiTietPhim({ ...chiTietPhim, arrayMaCumRap: arrayTemp });
+    }, [chiTietPhim.cumRapChieu])
+
+
+
+    let handleChange2 = (e) => {
+        setChiTietPhim({ ...chiTietPhim, maCumRap: e.target.value })
+    }
+
+    let renderChange2 = () => {
+        return chiTietPhim.arrayMaCumRap.map((rap, index) => {
+            return <option value={rap.maCumRap}>
+                {rap.tenCumRap}
+            </option>
+        })
+    }
+
+    // useEffect(() => {
+    //     thongTinRapSer.LoadThongTinRap(chiTietPhim.maHeThongRap).then(res => {
+    //         setChiTietPhim({...chiTietPhim,logo: res.data.logo});
+    //     })
+    // },[chiTietPhim.maHeThongRap])
+
+    // console.log('logo: ',chiTietPhim.logo);
+
+
+    useEffect(() => {
+        for (let key of chiTietPhim.cumRapChieu) {
+            if (key.maCumRap === chiTietPhim.maCumRap) {
+                let arrayTemp = key.lichChieuPhim;
+                arrayTemp.push({ ngayChieuGioChieu: 'Reload lại tại đây trước khi chọn', maLichChieu: 'Reload lại tại đây trước khi chọn' });
+                setChiTietPhim({ ...chiTietPhim, lichChieu: arrayTemp })
+            }
+        }
+    }, [chiTietPhim.maCumRap])
+
+    let renderChange3 = () => {
+        return chiTietPhim.lichChieu.map((lichChieu, index) => {
+            return <option value={lichChieu.maLichChieu}>
+                {lichChieu.ngayChieuGioChieu}
+            </option>
+        })
+    }
+
+    
+
+    let handleChange3 = (e) => {
+        setChiTietPhim({ ...chiTietPhim, maLichChieu: e.target.value });
+    }
+    const dispatch = useDispatch();
+
+    let maCumRap = useSelector(state => state.DatVeReducer.maCumRap);
+
+    let logo = useSelector(state => state.DatVeReducer.logo);
     return (
         <div className='main-chi-tiet-film'>
             <div className='container-fluid bg1-chi-tiet-phim'>
@@ -90,19 +176,66 @@ export default function ChiTietPhim(props) {
                 </div>
             </div>
             <div className='bg2-main-chi-tiet-phim'>
-                <video width='100%' height='100%' autoPlay muted loop>
-                    <source src={Video1} type="video/mp4" />
-                </video>
+                <div className='bg2-video'>
+                    <video width='100%' height='40%' autoPlay muted loop>
+                        <source src={Video1} type="video/mp4" />
+                    </video>
+                    <div className='quan-ly-rap'>
+                        <div className='header'>
+                            <h1 className='text-warning text-center'>CHỌN CỤM RẠP CHIẾU</h1>
+                        </div>
+                        {/* {renderRapPhim()} */}
+                        <div className='selectAction'>
+                            <div className='container'>
+                                <div className='row'>
+                                    <div className='col'>
+                                        <select onChange={onnChange1}>
+                                            {renderChange1()}
+                                        </select>
+                                    </div>
 
-                <div className='quan-ly-rap'>
-                    <div className='container-fluid'>
-                        <div className='row'>
-                            <div className='col-3'>
-                                {renderRapPhim()}
-                            </div>
+                                    <div className='col'>
+                                        <select onChange={handleChange2}>
+                                            {renderChange2()}
+                                        </select>
+                                    </div>
 
-                            <div className='col-9'>
+                                    <div className='col'>
+                                        <select onChange={handleChange3}>
+                                            {renderChange3()}
+                                        </select>
+                                    </div>
 
+                                    <div className='col'>
+                                        <buton onClick={() => {
+                                            dispatch({
+                                                type: 'DAT_VE_REDUCER',
+                                                maLichChieu: chiTietPhim.maLichChieu,
+                                                maCumRap: chiTietPhim.maCumRap,
+                                                maHeThongRap: chiTietPhim.maHeThongRap
+                                            })
+                                        }} className='btn btn-success'>Đặt vé</buton>
+                                    </div>
+                                </div>
+
+                                <div className='thong-tin-dat-ve'>
+                                   <div className='container'>
+                                        <div className='row'>
+                                            <div className='col'>
+                                            <i class="fab fa-android"></i>
+                                             Film Studio rất vui vì được đón tiếp quý vị. Là web được kết nối với tất cả các rạp nổi tiếng với nhiều bọ phim ra mắt hấp dẫn bom tấn nhất thời đại.
+                                            </div>
+
+                                            <div className='col'>
+                                            <i class="fa fa-code"></i> Đây là đồ án được thực hiện bở hai sinh viên UIT đến từ khoa Mạng Máy Tính và Truyền thông
+                                            </div>
+
+                                            <div className='col'>
+                                            <i class="fa fa-people-carry"></i> Dương Tuấn Bảo và Nguyễn Lê Hy hiện đang là sinh viên năm 2 của ngành An Toàn Thông Tin
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
                             </div>
                         </div>
                     </div>

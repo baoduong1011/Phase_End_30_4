@@ -1,11 +1,14 @@
+import ChiTietHeThongRap from "./ChiTietPhim/ChiTietHeThongRa";
 import ChiTietPhimSer from "./ChiTietPhim/ChiTietPhimSer";
+import LayThongTinLichChieu from "./ChiTietPhim/LayThongTinLichChieu";
 import DanhSachPhim from "./DanhSachPhim/DanhSachPhim";
 import ThongTinRapSer from "./ThongTinRap/ThongTinRapSer";
 import UserLogin from "./UserLogin/UserLogin";
 import UserRegister from "./UserRegister/UserRegister";
-
 export const userLoginService = new UserLogin();
 export const userRegisterService = new UserRegister();
 export const danhSachPhim = new DanhSachPhim();
 export const chiTietPhimSer = new ChiTietPhimSer();
 export const thongTinRapSer = new ThongTinRapSer();
+export const chiTietHeThongRap = new ChiTietHeThongRap();
+export const layThongTinLichChieu = new LayThongTinLichChieu();

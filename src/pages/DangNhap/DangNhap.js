@@ -1,8 +1,9 @@
 import { animated , useSpring } from 'react-spring'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import propsAnimtion1 from '../../animtionPackages/Animation'
 import './css/DangNhap.css';
 import {userLoginService} from '../../services/service'
+import { useSelector } from 'react-redux';
 export default function DangNhap(props) {
     const propsAnimtion1 = useSpring({
         opacity:1,
@@ -26,6 +27,9 @@ export default function DangNhap(props) {
         valid:false
 
     })
+
+    let maLichChieu = useSelector(state => state.DatVeReducer.maLichChieu);
+    console.log(maLichChieu);
 
     let handleChange = (e) => {
         let errorMessage = '';

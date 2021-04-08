@@ -30,6 +30,7 @@ function App() {
                 <Route exact path='/datve' component={DatVe} />
                 <Route exact path='/chitietphim/:idFilm' component={ChiTietPhim} />
                 <Route />
+              
             </Switch>
         </BrowserRouter>
     </animated.div>
