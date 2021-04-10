@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { a } from '@react-spring/web';
 import DAT_VE_REDUCER from '../../redux/actions/action';
 import LOGO_RAP_PHIM from '../../redux/actions/action';
+import { Link } from 'react-router-dom';
 export default function ChiTietPhim(props) {
     let maPhim = props.match.params.idFilm;
     // console.log(maPhim);
@@ -205,16 +206,15 @@ export default function ChiTietPhim(props) {
                                             {renderChange3()}
                                         </select>
                                     </div>
-
                                     <div className='col'>
-                                        <buton onClick={() => {
+                                        <Link to={`/datve/${chiTietPhim.maLichChieu}`}  onClick={() => {
                                             dispatch({
                                                 type: 'DAT_VE_REDUCER',
                                                 maLichChieu: chiTietPhim.maLichChieu,
                                                 maCumRap: chiTietPhim.maCumRap,
                                                 maHeThongRap: chiTietPhim.maHeThongRap
                                             })
-                                        }} className='btn btn-success'>Đặt vé</buton>
+                                        }} className='btn btn-success'>Đặt vé</Link>
                                     </div>
                                 </div>
 

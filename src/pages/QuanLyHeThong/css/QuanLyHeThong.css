@@ -1,0 +1,14 @@
+.quan-ly-he-thong-main {
+    padding-top: 90px;
+    background-color: #03080a;
+}
+
+.quan-ly-he-thong-main .row .col-3 {
+    background-color: #03080a;
+}
+
+.quan-ly-he-thong-main .link {
+    text-decoration: none;
+    color: blue;
+    /* padding:30px; */
+}

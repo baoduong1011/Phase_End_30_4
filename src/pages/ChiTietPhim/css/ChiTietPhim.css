@@ -112,6 +112,7 @@
     padding:30px 50px;
     background: rgba(0, 0, 0, 0.503);
     border: 1px solid wheat;
+    transition: all 0.5s;
 }
 
 .main-chi-tiet-film .bg2-main-chi-tiet-phim .quan-ly-rap .thong-tin-dat-ve .col i { 
