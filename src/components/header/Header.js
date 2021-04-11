@@ -1,43 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './css/header.css'
 export default function Header() {
 
-    let taiKhoan = localStorage.getItem('taiKhoan');
-    console.log(taiKhoan);
+    let flag = false;
+    if(localStorage.getItem('taiKhoan')) {
+        flag = true;
+    }
 
     return (
-        <div style={{backgroundColor:'rgba(0, 0, 0, 0.537)'}} className='main-header-web'>
-            <div className='container-fluid'>
-                <div className='row'>
-                    <div className='col-6'>
-                        <h3>Studio Film</h3>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.537)' }} className='main-header-web'>
+            <nav>
+                <label className='logo'><i class="fa fa-film"></i> Studio Film</label>
+                <ul className='ulHeader'>
+                    <li className="navitem active">
+                        <NavLink className="navlink" to='/trangchu'>Trang chủ</NavLink>
+                    </li>
+                    <li className="navitem">
+                        <NavLink className="navlink" to='/phímapchieu'>Phim mới</NavLink>
+                    </li>
+                    <li className="navitem">
+                        <NavLink className="navlink" to='/dangnhap'>Đăng nhập</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="navlink" to='/dangky'>Đăng ký</NavLink>
+                    </li>
+                    <li className="navitem nav-user">
+                        <a  className="nav-link" href="#"> <i class="fa fa-user"></i> {localStorage.getItem('taiKhoan')} - {flag ? <span onClick={() => {
+                            localStorage.clear();
+                            window.location.replace('/trangchu');
+                            alert("Đăng xuất thành công!")
+                        }}> <i class="fa fa-sign-out-alt"></i> </span> : <span></span>} </a>
+                    </li>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                     </div>
-                    <div className='col-6'>
-                        <nav className="navbar navbar-expand-lg navbar-light">
-                            <div className="collapse navbar-collapse" id="navbarNav">
-                                <ul style={{color:'wheat'}} className="navbar-nav">
-                                    <li className="nav-item active">
-                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/trangchu'>Trang chủ <span className="sr-only">(current)</span></NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/phímapchieu'>Phim mới</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/dangnhap'>Đăng nhập</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink style={{color:'wheat'}} className="nav-link" to='/dangky'>Đăng ký</NavLink>
-                                    </li>
-                                    <li className="nav-item nav-user">
-                                        <a  style={{color:'wheat'}} className="nav-link" href="#"> <i class="fa fa-user"></i> {taiKhoan}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
                     </div>
-                </div>
-            </div>
+                </ul>
+                <label id='icon'>
+                    <i class="fa fa-bars"></i>
+                </label>
+            </nav>
         </div>
     )
 }

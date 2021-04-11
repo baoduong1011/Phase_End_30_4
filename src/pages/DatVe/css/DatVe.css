@@ -1,5 +1,7 @@
 .dat-ve-main {
     padding-top: 90px;
+    background: url(./bg2.jpg);
+    background-size: contain;
 }
 
 .dat-ve-main .ghe {
@@ -9,7 +11,7 @@
     border: none;
     border-radius: 5px;
     color: black;
-    background-color: rgba(0, 0, 0, 0.557);
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
@@ -21,14 +23,14 @@
     border: none;
     border-radius: 5px;
     color: black;
-    background-color: rgba(220, 102, 24, 0.557);
+    background-color: rgb(220, 102, 24);
 }
 
 .dat-ve-main .gheDaDat {
     cursor: no-drop !important;
-    background-color: rgba(32, 32, 32, 0);
+    background-color: rgb(32, 32, 32);
 }
 
 .dat-ve-main .gheDangDat {
-    background-color: rgba(0, 128, 0, 0.605);
+    background-color: rgb(0, 128, 0);
 }

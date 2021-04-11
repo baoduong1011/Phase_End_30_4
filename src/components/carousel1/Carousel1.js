@@ -27,13 +27,22 @@ export default function Carousel1() {
         slidesToScroll: 2
     };
 
+
+    const settings2 = {
+        // dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
+
     console.log(dsPhim.films);
 
     let renderDanhSachPhim = () => {
         return dsPhim.films?.map((film,index) => {
             return <div className='text-center' key={index}>
                 <div className='img-film'>
-                    <img src={film.hinhAnh} style={{width:'250px',height:'350px', borderRadius:'10px'}} />
+                    <img src={film.hinhAnh} />
                     <div className='sub-film text-center'>
                 <div>
                 <h6 className='text-light text-center'>{film.tenPhim}</h6>
@@ -54,18 +63,26 @@ export default function Carousel1() {
                     <source src={Video1} type="video/mp4" />
                 </video>
                 <div className='body-carousel1 text-center'>
-                <h1 style={{padding:'60px 0px'}} className='text-warning'>PHIM HOT THÁNG NÀY</h1>
-                <div className='container'>
-                    <Slider {...settings}>
-                        {renderDanhSachPhim()}
-                    </Slider>
+                    <h1 style={{padding:'60px 0px'}} className='text-warning'>PHIM HOT THÁNG NÀY</h1>
+                    <div className='responsiveTemp1'>
+                    <div className='container'>
+                        <Slider {...settings}>
+                            {renderDanhSachPhim()}
+                        </Slider>
+                    </div>
+                    </div>
+
+                    <div className='responsiveTemp2'>
+                        <div className='container'>
+                            <Slider {...settings2} >
+                                {renderDanhSachPhim()}
+                            </Slider>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
 
-          
-
-            
+           
         </div>
     )
 }

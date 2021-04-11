@@ -1,14 +1,20 @@
 .main-header-web {
-    background-color: rgba(0, 0, 0, 0.537);
-    padding: 20px 0px;
+    background-color: rgba(0, 0, 0, 0.483);
+    padding:0;
+    margin: 0px;
     position: fixed;
     z-index: 10;
     width: 100%;
     color: wheat;
+    text-decoration: none;
 }
 
-.main-header-web h3{
+/* .main-header-web h3{
     font-weight: 600;
+}
+
+.main-header-web .navbar-collapse nav li {
+    display: block;
 }
 
 .main-header-web .nav-link {
@@ -21,4 +27,151 @@
 .main-header-web .nav-user a {
     border-left: 1px solid wheat;
     padding-left: 20px;
+}
+
+.main-header-web .checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right:-100px;
+    cursor: pointer;
+    display: none;
+}
+
+.main-header-web #check {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .main-header-web .checkbtn {
+        display: block;
+    }
+
+    .main-header-web .navbar-collapse {
+        display: none;
+        padding: 0px;
+    }
+
+    .main-header-web ul {
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        height: 100vh;
+        background:#2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+    }
+
+    .main-header-web ul li {
+        display: block;
+    }
+
+}
+
+#check:checked ~ ul {
+    left: 0;
+} */
+
+.main-header-web nav {
+    height: 80px;
+    width: 100%;
+    /* background: #34495e; */
+}
+
+.main-header-web label.logo {
+    font-size: 35px;
+    font-weight: bold;
+    padding: 0 100px;
+    line-height: 80px;
+}
+
+.main-header-web nav ul {
+    float: right;
+    margin-right: 40px;
+}
+
+.main-header-web nav li {
+    display: inline-block;
+    margin: 0 8px;
+    line-height: 80px;
+
+}
+
+.main-header-web .nav-user a {
+    border-left: 1px solid wheat;
+    padding-left: 20px;
+    color: wheat;
+}
+
+.main-header-web nav .navlink {
+    font-size: 18px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    padding: 7px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: wheat;
+}
+
+.main-header-web .navlink.active, .navlink:hover {
+    border: 1px solid white;
+    transition: 0.5s;
+}
+.main-header-web nav #icon {
+    color: wheat;
+    font-size: 30px;
+    line-height: 80px;
+    float: right;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+@media  (max-width:1200px) {
+    .main-header-web label.logo {
+        font-size: 32px;
+        padding-left: 60px;
+    }
+    .main-header-web nav ul {
+        margin-right: 20px;
+    }
+
+    .main-header-web nav .navlink {
+        font-size: 17px;
+    }
+}
+
+@media (max-width:1194px) {
+   .main-header-web nav #icon {
+       display: block;
+   } 
+   .main-header-web nav ul {
+       position: fixed;
+       width: 100%;
+       height: 100vh;
+       background: rgba(0, 0, 0, 0.782);
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        z-index: 10;
+        transition: 0.5s;
+   }
+   .main-header-web nav li {
+       display: block;
+       margin: 50px 0;
+       line-height: 30px;
+    }
+    .main-header-web nav .navlink {
+        font-size: 20px;
+    }
+    .main-header-web .navlink:hover {
+        border: none;
+        color: #3498db;
+    }
+
+    .main-header-web nav .ulHeader.show{
+        left:0%;
+    }
 }

@@ -61,7 +61,7 @@ export default function DatVe(props) {
 
    if(localStorage.getItem('taiKhoan')) {
     return (
-        <div className='dat-ve-main'>
+        <div className='dat-ve-main text-light'>
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-8 text-center'>

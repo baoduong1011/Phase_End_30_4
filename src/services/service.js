@@ -10,6 +10,7 @@ import DatVe from "./DatVe/DatVe";
 import ThemNguoiDung from "./ThemNguoiDung/ThemNguoiDung";
 import LayDanhSachNguoiDung from "./LayDanhSachNguoiDung/LayDanhSachNguoiDiung";
 import XoaNguoiDung from "./XoaNguoiDung/XoaNguoiDung";
+import CapNhatNguoiDung from "./CapNhatNguoiDung/CapNhatNguoiDung";
 
 
 
@@ -27,3 +28,4 @@ export const datVe = new DatVe();
 export const themNguoiDung = new ThemNguoiDung();
 export const layDanhSachNguoiDung = new LayDanhSachNguoiDung();
 export const xoaNguoiDung = new XoaNguoiDung();
+export const capNhatNguoiDung = new CapNhatNguoiDung();

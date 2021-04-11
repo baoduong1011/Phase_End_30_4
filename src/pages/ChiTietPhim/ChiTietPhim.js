@@ -160,10 +160,10 @@ export default function ChiTietPhim(props) {
                             <h1 data-text={chiTietPhim.chiTiet.tenPhim} className='text-center'> <i class="fa fa-film"></i> {chiTietPhim.chiTiet.tenPhim}</h1>
                         </div>
                         <div className='mo-ta-chi-tiet-phim'>
-                            <h4 className='text-center'>NGÀY KHỞI CHIẾU: {chiTietPhim.chiTiet.ngayKhoiChieu} </h4>
+                            <h4 className='text-center'>{chiTietPhim.chiTiet.ngayKhoiChieu} </h4>
                             <h5 className='text-center'>Mô tả: {chiTietPhim.chiTiet.moTa}</h5>
                         </div>
-                        <div style={{ marginLeft: '10%' }} className='text-warning text-center'>
+                        <div style={{ marginLeft: '20%' }} className='text-warning text-center'>
                             <div>
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />

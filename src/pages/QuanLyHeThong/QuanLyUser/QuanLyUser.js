@@ -2,8 +2,9 @@ import { useSpring, animated } from 'react-spring'
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router';
 import './QuanLyUser.css';
-import { layDanhSachNguoiDung, themNguoiDung, xoaNguoiDung } from '../../../services/service';
+import { capNhatNguoiDung, layDanhSachNguoiDung, themNguoiDung, xoaNguoiDung } from '../../../services/service';
 import Axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function QuanLyUser(props) {
 
@@ -15,7 +16,7 @@ export default function QuanLyUser(props) {
             matKhau: '',
             email: '',
             soDt: '',
-            maNhom: 'GP01',
+            maNhom: "GP01",
             maLoaiNguoiDung: '',
             hoTen: ''
         },
@@ -29,7 +30,8 @@ export default function QuanLyUser(props) {
             hoTen: ''
         },
         valid: false,
-        danhSachNguoiDung:[]
+        danhSachNguoiDung:[],
+        flag:0
     })
 
     let submit = (data) => {
@@ -143,13 +145,28 @@ export default function QuanLyUser(props) {
         })
     },[]) 
 
+    let dispatch = useDispatch();
+
+    let user = useSelector( state => state.UserReducer.user);
+
+    useEffect(() => {
+        setUserRegister({...userRegister,values: user})
+    },[userRegister.flag])
+
     let renderDanhSachNguoiDung = () => {
         return userRegister.danhSachNguoiDung.map((user,index) => {
             return <tr className='text-light' key={index}>
                 <td>{index+1}</td>
                 <td>{user.taiKhoan}</td>
                 <td>{user.maLoaiNguoiDung}</td>
-                <td><button className='btn btn-info'>Sửa</button></td>
+                <td><button onClick={() => {
+                        dispatch({
+                            type:'CHINH_SUA_USER',
+                            userEdit: user
+                        })
+                        let newFlag = userRegister.flag + 1;
+                        setUserRegister({...userRegister,flag: newFlag });
+                }} className='btn btn-info'>Sửa</button></td>
                 <td><button onClick={() => {
                     xoaNguoiDung.Xoa(user.taiKhoan).then(res => {
                         alert(res.data);
@@ -163,6 +180,8 @@ export default function QuanLyUser(props) {
         })
     }
 
+    console.log('edit: ',userRegister.values)
+
     if (localStorage.getItem('taiKhoan') && maLoaiNguoiDung === "QuanTri") {
         return (
             <div className='body-quan-ly-user'>
@@ -172,7 +191,7 @@ export default function QuanLyUser(props) {
                         <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='text' name='taiKhoan' />
+                                <input value={userRegister.values.taiKhoan} style={{color:'wheat'}} onChange={handleChange} type='text' name='taiKhoan' />
                                 <span className='text'>Tài khoản</span>
                                 <span className='line'></span>
                             </div>
@@ -183,7 +202,7 @@ export default function QuanLyUser(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='password' name='matKhau' />
+                                <input  value={userRegister.values.matKhau} style={{color:'wheat'}} onChange={handleChange} type='password' name='matKhau' />
                                 <span className='text'>Mật khẩu</span>
                                 <span className='line'></span>
                             </div>
@@ -194,7 +213,7 @@ export default function QuanLyUser(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='text' name='hoTen' />
+                                <input  value={userRegister.values.hoTen} style={{color:'wheat'}} onChange={handleChange} type='text' name='hoTen' />
                                 <span className='text'>Họ tên</span>
                                 <span className='line'></span>
                             </div>
@@ -205,7 +224,7 @@ export default function QuanLyUser(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='email' name='email' />
+                                <input  value={userRegister.values.email} style={{color:'wheat'}} onChange={handleChange} type='email' name='email' />
                                 <span className='text text-center'>Email</span>
                                 <span className='line'></span>
                             </div>
@@ -216,7 +235,7 @@ export default function QuanLyUser(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='soDt' name='soDt' />
+                                <input  value={userRegister.values.soDt} style={{color:'wheat'}} onChange={handleChange} type='soDt' name='soDt' />
                                 <span className='text text-center'>Số điện thoại</span>
                                 <span className='line'></span>
                             </div>
@@ -227,7 +246,7 @@ export default function QuanLyUser(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='maLoaiNguoiDung' name='maLoaiNguoiDung' />
+                                <input  value={userRegister.values.maLoaiNguoiDung} style={{color:'wheat'}} onChange={handleChange} type='maLoaiNguoiDung' name='maLoaiNguoiDung' />
                                 <span className='text'>Mã loại người dùng</span>
                                 <span className='line'></span>
                             </div>
@@ -235,10 +254,28 @@ export default function QuanLyUser(props) {
                         <p className='text-center text-danger'>{userRegister.errors.maLoaiNguoiDung}</p>
                     </div>
 
-                        <div className='submit text-center'>
+                        <div className='text-center'>
                             {userRegister.valid ? <button onClick={() => {
                                 handleSubmit()
-                            }} className='btn'>Thêm</button> : <button disabled style={{ cursor: 'not-allowed' }} className='btn'>Thêm</button>}
+                            }} className='btn btn-success ml-2'>Thêm</button> : <button disabled style={{ cursor: 'not-allowed' }} className='btn'>Thêm</button>}
+                             {userRegister.valid ? <button onClick={() => {
+                                 let newUser = userRegister.values;
+                                 let temp = {
+                                    taiKhoan: newUser.taiKhoan,
+                                    matKhau: newUser.matKhau,
+                                    email: newUser.email,
+                                    soDt: newUser.soDt,
+                                    maNhom: "GP01",
+                                    maLoaiNguoiDung: newUser.maLoaiNguoiDung,
+                                    hoTen: newUser.hoTen
+                                 }
+                                capNhatNguoiDung.CapNhat(temp).then(res => {
+                                    console.log(res.data);
+                                })
+                                .catch(err => {
+                                    console.log(err.response.data);
+                                })
+                            }} className='btn btn-info ml-2'>Cập nhật</button> : <button disabled style={{ cursor: 'not-allowed' }} className='btn'>Cập nhật</button>}
                         </div>
                     </div>
                 </div>

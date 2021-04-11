@@ -1,4 +1,9 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+
 .main-chi-tiet-film {
+    
 }
 
 .main-chi-tiet-film .bg1-chi-tiet-phim {
@@ -7,7 +12,7 @@
 
 
 .main-chi-tiet-film .bg1-chi-tiet-phim {
-    background: #252839;
+    background: black;
 }
 
 .main-chi-tiet-film .bg1-chi-tiet-phim .body-text {
@@ -30,6 +35,7 @@
     color: #252839;
     -webkit-text-stroke: 0.5vw #383d52;
     /* text-transform: uppercase; */
+    font-family: 'Train One', cursive;
 }
 
 .main-chi-tiet-film .bg1-chi-tiet-phim .body-text .body-text-chi-tiet-phim h1 {
@@ -39,18 +45,20 @@
     left: 10%;
     width: 100%;
     height: 100%;
-    color: #01fe87;
+    color: wheat;
     -webkit-text-stroke: 0vw #383d52;
     /* border-right: 2px solid #01fe87; */
     overflow: hidden;
     animation: animate 6s linear infinite;
+    font-family: 'Train One', cursive;
 
 }
 
 .main-chi-tiet-film .mo-ta-chi-tiet-phim {
     margin-top: 35%;
     margin-left: 20%;
-    color: #01fe87;
+    color: wheat;
+    font-family: 'Train One', cursive;
 }
 .main-chi-tiet-film i {
     font-size: 30px;
