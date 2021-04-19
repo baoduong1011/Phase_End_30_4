@@ -1,0 +1,40 @@
+.tao-lich-chieu-main .modal-body {
+    background: url(./bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tao-lich-chieu-main .box .inputBox {
+    position: relative;
+}
+
+.tao-lich-chieu-main .box .inputBox input {
+    width: 100%;
+    padding: 25px 0;
+    font-size: 16px;
+    color: wheat;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background:transparent;
+    
+}
+
+.tao-lich-chieu-main .box .inputBox label {
+    position:absolute;
+    top: 0;
+    left: 0;
+    padding:25px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.tao-lich-chieu-main .box .inputBox input:focus ~ label,
+.tao-lich-chieu-main .box .inputBox input:valid ~ label {
+    top: -18px;
+    left: 0;
+    color: #03a9f4;
+    font-size: 12px;
+}

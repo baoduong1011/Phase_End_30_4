@@ -1,0 +1,19 @@
+.tin-tuc-main{
+    /* display: flex; */
+    background: url(./bg.jpg);
+    background-size: contain;
+    /* height: 500px; */
+}
+
+.tin-tuc-main .row {
+    border-radius: 60px 0 60px 0;
+    border: 3px solid wheat ;
+    background: rgba(221, 160, 221, 0.592);
+    color: whitesmoke;
+    padding: 60px 0px;
+    transition: 0.5s;
+}
+
+.tin-tuc-main .row:hover {
+    background:rgba(255, 166, 0, 0.551);
+}

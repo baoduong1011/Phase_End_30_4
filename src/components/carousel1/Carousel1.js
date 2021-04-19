@@ -4,7 +4,9 @@ import './css/Carousel1.css';
 import { danhSachPhim } from '../../services/service';
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 // import './scss/Carousel2.scss';
+import moment from 'moment';
 export default function Carousel1() {
     useEffect(() => {
         danhSachPhim.LoadDanhSach().then(res => {
@@ -17,6 +19,8 @@ export default function Carousel1() {
     const [dsPhim, setDsPhim] = useState({
         films: []
     })
+
+    const dispatch = useDispatch();
 
 
     const settings = {
@@ -36,7 +40,7 @@ export default function Carousel1() {
         slidesToScroll: 1
     };
 
-    console.log(dsPhim.films);
+    // console.log(dsPhim.films);
 
     let renderDanhSachPhim = () => {
         return dsPhim.films?.map((film,index) => {
@@ -46,7 +50,7 @@ export default function Carousel1() {
                     <div className='sub-film text-center'>
                 <div>
                 <h6 className='text-light text-center'>{film.tenPhim}</h6>
-                <p className='text-warning'>{film.ngayKhoiChieu}</p>
+                <p className='text-warning'>{moment(film.ngayKhoiChieu).format('DD/MM/YYYY')}</p>
                 <Link to={`/chitietphim/${film.maPhim}`} className='btn  dat-ve'>Đặt Vé</Link>
                 </div>
                 </div>

@@ -5,7 +5,7 @@ import './QuanLyUser.css';
 import { capNhatNguoiDung, layDanhSachNguoiDung, themNguoiDung, xoaNguoiDung } from '../../../services/service';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-
+import swal from 'sweetalert';
 export default function QuanLyUser(props) {
 
     let maLoaiNguoiDung = localStorage.getItem('maLoaiNguoiDung');
@@ -42,8 +42,15 @@ export default function QuanLyUser(props) {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken')}
         });
         promise.then(res => {
-            alert('Thêm thành công');
-            window.location.reload();
+            swal({
+                title: "Thêm thành công",
+                text: "Dữ liệu của bạn đã được ghi lại",
+                icon: "success",
+              });
+              setTimeout(function() {
+                  window.location.reload();
+              },3000)
+           
 
         })
         promise.catch(err => {
@@ -169,8 +176,14 @@ export default function QuanLyUser(props) {
                 }} className='btn btn-info'>Sửa</button></td>
                 <td><button onClick={() => {
                     xoaNguoiDung.Xoa(user.taiKhoan).then(res => {
-                        alert(res.data);
-                        window.location.reload();
+                        swal({
+                            title: "Xóa thành công",
+                            text: "Dữ liệu của bạn đã được ghi lại",
+                            icon: "success",
+                          });
+                          setTimeout(function() {
+                            window.location.reload();
+                        },3000)
                     })
                     .catch(err => {
                         alert(err.response.data);
@@ -270,7 +283,14 @@ export default function QuanLyUser(props) {
                                     hoTen: newUser.hoTen
                                  }
                                 capNhatNguoiDung.CapNhat(temp).then(res => {
-                                    console.log(res.data);
+                                    swal({
+                                        title: "Chỉnh sửa thành công",
+                                        text: "Dữ liệu của bạn đã được ghi lại",
+                                        icon: "success",
+                                      });
+                                      setTimeout(function() {
+                                          window.location.reload();
+                                      },3000)
                                 })
                                 .catch(err => {
                                     console.log(err.response.data);
@@ -305,3 +325,12 @@ export default function QuanLyUser(props) {
         return <Redirect to='/trangchu' />
     }
 }
+
+// maPhim: '',
+// tenPhim: '',
+// trailer: '',
+// moTa: '',
+// maNhom: 'GP01',
+// ngayKhoiChieu: '',
+// danhGia: '',
+// hinhAnh:{}

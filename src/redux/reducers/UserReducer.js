@@ -7,7 +7,8 @@ const stateDefault = {
         maNhom: 'GP01',
         maLoaiNguoiDung: '',
         hoTen: ''
-    }
+    },
+    taiKhoanDatVe:''
 }
 
 
@@ -18,6 +19,9 @@ const UserReducer = (state = stateDefault , action) => {
             return {...state,user: action.userEdit}
         }
 
+        case 'LICH_SU_DAT_VE' : {
+            return {...state,taiKhoanDatVe: action.taiKhoanDatve};
+        }
 
         default: return {...state}
     }

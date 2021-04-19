@@ -8,6 +8,9 @@ import { a } from '@react-spring/web';
 import DAT_VE_REDUCER from '../../redux/actions/action';
 import LOGO_RAP_PHIM from '../../redux/actions/action';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 export default function ChiTietPhim(props) {
     let maPhim = props.match.params.idFilm;
     // console.log(maPhim);
@@ -27,6 +30,7 @@ export default function ChiTietPhim(props) {
     })
 
     useEffect(() => {
+        Aos.init({duration:2000});
         chiTietPhimSer.LoadChiTietPhim(maPhim).then(res => {
             setChiTietPhim({ ...chiTietPhim, chiTiet: res.data });
         })
@@ -132,7 +136,7 @@ export default function ChiTietPhim(props) {
     let renderChange3 = () => {
         return chiTietPhim.lichChieu.map((lichChieu, index) => {
             return <option value={lichChieu.maLichChieu}>
-                {lichChieu.ngayChieuGioChieu}
+                {moment(lichChieu.ngayChieuGioChieu).format('DD-MM-YYYY hh:mm A')}
             </option>
         })
     }
@@ -159,11 +163,11 @@ export default function ChiTietPhim(props) {
                         <div className='body-text-chi-tiet-phim'>
                             <h1 data-text={chiTietPhim.chiTiet.tenPhim} className='text-center'> <i class="fa fa-film"></i> {chiTietPhim.chiTiet.tenPhim}</h1>
                         </div>
+                        <div className='borderName'>
                         <div className='mo-ta-chi-tiet-phim'>
                             <h4 className='text-center'>{chiTietPhim.chiTiet.ngayKhoiChieu} </h4>
                             <h5 className='text-center'>Mô tả: {chiTietPhim.chiTiet.moTa}</h5>
-                        </div>
-                        <div style={{ marginLeft: '20%' }} className='text-warning text-center'>
+                            <div style={{ marginLeft: '0%' }} className='text-warning text-center'>
                             <div>
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
@@ -171,7 +175,9 @@ export default function ChiTietPhim(props) {
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
                             </div>
-
+                        </div>
+                        </div>
+                       
                         </div>
                     </div>
                 </div>
@@ -183,25 +189,25 @@ export default function ChiTietPhim(props) {
                     </video>
                     <div className='quan-ly-rap'>
                         <div className='header'>
-                            <h1 className='text-warning text-center'>CHỌN CỤM RẠP CHIẾU</h1>
+                            <h1 data-aos="slide-down" className='text-warning text-center'>CHỌN CỤM RẠP CHIẾU</h1>
                         </div>
                         {/* {renderRapPhim()} */}
                         <div className='selectAction'>
                             <div className='container'>
                                 <div className='row'>
-                                    <div className='col'>
+                                    <div data-aos="fade-up" className='col'>
                                         <select onChange={onnChange1}>
                                             {renderChange1()}
                                         </select>
                                     </div>
 
-                                    <div className='col'>
+                                    <div data-aos="fade-up" className='col'>
                                         <select onChange={handleChange2}>
                                             {renderChange2()}
                                         </select>
                                     </div>
 
-                                    <div className='col'>
+                                    <div data-aos="fade-up" className='col'>
                                         <select onChange={handleChange3}>
                                             {renderChange3()}
                                         </select>
@@ -220,7 +226,7 @@ export default function ChiTietPhim(props) {
 
                                 <div className='thong-tin-dat-ve'>
                                    <div className='container'>
-                                        <div className='row'>
+                                        <div data-aos="flip-down" className='row'>
                                             <div className='col'>
                                             <i class="fab fa-android"></i>
                                              Film Studio rất vui vì được đón tiếp quý vị. Là web được kết nối với tất cả các rạp nổi tiếng với nhiều bọ phim ra mắt hấp dẫn bom tấn nhất thời đại.

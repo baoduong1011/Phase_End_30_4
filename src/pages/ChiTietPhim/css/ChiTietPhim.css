@@ -2,6 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
+
+
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400&display=swap')
 .main-chi-tiet-film {
     
 }
@@ -20,6 +23,14 @@
     
 }
 
+.main-chi-tiet-film .borderName .mo-ta-chi-tiet-phim {
+    border: 1px solid wheat;
+    padding: 30px 0px;
+    border-radius: 40px 0 40px 0;
+    background:rgba(255, 115, 0, 0.632);
+}
+
+
 .main-chi-tiet-film .bg1-chi-tiet-phim .body-text .body-text-chi-tiet-phim {
     display: flex;
     justify-content: center;
@@ -35,7 +46,7 @@
     color: #252839;
     -webkit-text-stroke: 0.5vw #383d52;
     /* text-transform: uppercase; */
-    font-family: 'Train One', cursive;
+    font-family: 'Karantina';
 }
 
 .main-chi-tiet-film .bg1-chi-tiet-phim .body-text .body-text-chi-tiet-phim h1 {
@@ -49,8 +60,8 @@
     -webkit-text-stroke: 0vw #383d52;
     /* border-right: 2px solid #01fe87; */
     overflow: hidden;
-    animation: animate 6s linear infinite;
-    font-family: 'Train One', cursive;
+    /* animation: animate 6s linear infinite; */
+    font-family: 'Karantina';
 
 }
 
@@ -58,7 +69,7 @@
     margin-top: 35%;
     margin-left: 20%;
     color: wheat;
-    font-family: 'Train One', cursive;
+    font-family: 'Karantina';
 }
 .main-chi-tiet-film i {
     font-size: 30px;

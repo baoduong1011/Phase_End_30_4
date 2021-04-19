@@ -11,9 +11,11 @@ import ThemNguoiDung from "./ThemNguoiDung/ThemNguoiDung";
 import LayDanhSachNguoiDung from "./LayDanhSachNguoiDung/LayDanhSachNguoiDiung";
 import XoaNguoiDung from "./XoaNguoiDung/XoaNguoiDung";
 import CapNhatNguoiDung from "./CapNhatNguoiDung/CapNhatNguoiDung";
-
-
-
+import XoaPhim from "./XoaPhim/XoaPhim";
+import ChinhSuaPhim from "./ChinhSuaPhim/ChinhSuaPhim";
+import TimKiem from './TimKiemNguoiDung/TimKiem';
+import LichSuDatVe from './LichSuDatVe/LichSuDatVe';
+import TaoLichChieu from "../pages/QuanLyHeThong/TaoLichChieu/TaoLichChieu";
 
 
 export const userLoginService = new UserLogin();
@@ -29,3 +31,8 @@ export const themNguoiDung = new ThemNguoiDung();
 export const layDanhSachNguoiDung = new LayDanhSachNguoiDung();
 export const xoaNguoiDung = new XoaNguoiDung();
 export const capNhatNguoiDung = new CapNhatNguoiDung();
+export const xoaPhim = new XoaPhim();
+export const chinhSuaPhim = new ChinhSuaPhim();
+export const timKiem = new TimKiem();
+export const lichSuDatVe = new LichSuDatVe();
+export const taoLichChieu = new TaoLichChieu();

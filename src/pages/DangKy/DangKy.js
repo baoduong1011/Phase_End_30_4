@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import propsAnimtion1 from '../../animtionPackages/Animation';
 import './css/DangKy.css';
 import { userRegisterService } from '../../services/service';
-
+import Contact from '../../components/contact/Contact';
+import Footer from '../../components/footer/Footer';
+import swal from 'sweetalert';
 export default function DangKy() {
 
    
@@ -107,8 +109,10 @@ export default function DangKy() {
       let handleSubmit = (e) => {
         // e.preventDefault();
         userRegisterService.DangKy(userRegister.values).then(res => {
-            alert("Bạn đã đăng ký thành công!");
-            window.location.reload();
+            swal("Đăng ký thành công!", "Chúc bạn có những trải nghiệm vui vẻ!", "success");
+            setTimeout(function() {
+                window.location.reload();
+            },4000);
         })
         .catch(err => {
             alert(err.response.data);   
@@ -123,7 +127,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='text' name='taiKhoan' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='text' name='taiKhoan' />
                                 <span className='text'>Tài khoản</span>
                                 <span className='line'></span>
                             </div>
@@ -134,7 +138,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='password' name='matKhau' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='password' name='matKhau' />
                                 <span className='text'>Mật khẩu</span>
                                 <span className='line'></span>
                             </div>
@@ -145,7 +149,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='text' name='hoTen' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='text' name='hoTen' />
                                 <span className='text'>Họ tên</span>
                                 <span className='line'></span>
                             </div>
@@ -156,7 +160,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='email' name='email' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='email' name='email' />
                                 <span className='text text-center'>Email</span>
                                 <span className='line'></span>
                             </div>
@@ -167,7 +171,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='soDt' name='soDt' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='soDt' name='soDt' />
                                 <span className='text text-center'>Số điện thoại</span>
                                 <span className='line'></span>
                             </div>
@@ -178,7 +182,7 @@ export default function DangKy() {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input style={{color:'wheat'}} onChange={handleChange} type='maLoaiNguoiDung' name='maLoaiNguoiDung' />
+                                <input autocomplete="off" style={{color:'wheat'}} onChange={handleChange} type='maLoaiNguoiDung' name='maLoaiNguoiDung' />
                                 <span className='text'>Mã loại người dùng</span>
                                 <span className='line'></span>
                             </div>
@@ -191,11 +195,11 @@ export default function DangKy() {
                             handleSubmit()
                         }} className='btn'>Đăng ký</button> : <button disabled style={{cursor:'not-allowed'}} className='btn'>Đăng ký</button>}
                     </div>
-
-                    
                 </div>
             </div>
             </div>
+            <Contact/>
+            <Footer/>
         </animated.div>
     )
 }

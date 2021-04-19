@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './css/header.css'
+import swal from 'sweetalert';
 export default function Header() {
 
     let flag = false;
@@ -17,7 +18,7 @@ export default function Header() {
                         <NavLink className="navlink" to='/trangchu'>Trang chủ</NavLink>
                     </li>
                     <li className="navitem">
-                        <NavLink className="navlink" to='/phímapchieu'>Phim mới</NavLink>
+                        <NavLink className="navlink" to='/khuyenmai'>Khuyến mãi</NavLink>
                     </li>
                     <li className="navitem">
                         <NavLink className="navlink" to='/dangnhap'>Đăng nhập</NavLink>
@@ -28,8 +29,16 @@ export default function Header() {
                     <li className="navitem nav-user">
                         <a  className="nav-link" href="#"> <i class="fa fa-user"></i> {localStorage.getItem('taiKhoan')} - {flag ? <span onClick={() => {
                             localStorage.clear();
-                            window.location.replace('/trangchu');
-                            alert("Đăng xuất thành công!")
+                            
+                            swal({
+                                title: "Đăng xuất thành công!",
+                                text: "Cám ơn bạn đã luôn đồng hành cùng Film Studio",
+                                icon: "success",
+                                button: "OK",
+                            })
+                            setTimeout(function() {
+                                window.location.replace('/trangchu');
+                            },2500)
                         }}> <i class="fa fa-sign-out-alt"></i> </span> : <span></span>} </a>
                     </li>
 

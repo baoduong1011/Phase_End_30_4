@@ -1,14 +1,35 @@
 import Axios from 'axios';
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import DAT_VE_REDUCER from '../../redux/actions/action';
 // import DAT_GHE from '../../redux/actions/action';
 import { danhSachPhongVe, datVe, thongTinRapSer } from '../../services/service';
 import './css/DatVe.css';
-
+import swal from 'sweetalert';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 export default function DatVe(props) {
+    
+    const startMinutes = 5;
+    let time = startMinutes*60;
+     let updateTime = () => {
+         let countDownElement = '';
+         const minutes = Math.floor(time/60);
+         let seconds = time%60;
 
+         seconds = seconds < 10 ? '0' + seconds : seconds;
+         countDownElement=`${minutes}:${seconds}`;
+         setTime({...timing,timingElement: countDownElement});
+         time--;
+     }
+
+
+     const [timing,setTime] = useState({
+         timingElement:'5:00'
+     })
+
+    
 
     let [film,setFilm] = useState({
         thongTinPhim:{},
@@ -25,7 +46,15 @@ export default function DatVe(props) {
         }) 
 
         promise.then(res => {
-            alert(res.data);
+            swal({
+                title: "Đặt vé thành công",
+                text: "Chúc bạn xem phim bui vẻ!",
+                icon: "success",
+                button: "OK",
+            })
+            setTimeout(function() {
+                props.history.push('/trangchu');
+            },4000)
         })
 
         promise.catch(err => {
@@ -38,26 +67,33 @@ export default function DatVe(props) {
 
     let dsGheDangDat = useSelector(state => state.DatVeReducer.dsGheDangDat);
 
-    console.log(dsGheDangDat);
+    // console.log(dsGheDangDat);
 
     let maLichChieu = useSelector(state => state.DatVeReducer.maLichChieu);
-    console.log(maLichChieu);
+    // console.log(maLichChieu);
     useEffect(() => {
+        setInterval(updateTime,1000);
         danhSachPhongVe?.LoadDanhSachPhongVe(maLichChieu2).then(res => {
             setFilm({...film,thongTinPhim: res.data.thongTinPhim,danhSachGhe: res.data.danhSachGhe});
         })
         .catch(err => {
             console.log(err.response.data);
         })
+        setTimeout(() => {
+            alert("Bạn đã hết thời gian giữa ghế (* )")
+            window.location.reload();
+        },300000)
     },[])
 
-    console.log(film);
+    
 
     let dispatch = useDispatch();
 
     let accessToken = localStorage.getItem('accessToken');
-    console.log(accessToken);
+    
 
+    let element = useRef(null);
+    console.log(element.current);
 
    if(localStorage.getItem('taiKhoan')) {
     return (
@@ -99,8 +135,10 @@ export default function DatVe(props) {
                             })}
                         </div>
                     </div>
-
                     <div className='col-4'>
+                    <h1 className='text-center text-warning countDownc pt-5'>
+                           Thời gian: {timing.timingElement}
+                    </h1>
                         <div className='display-4 text-center'>
                             {dsGheDangDat?.reduce((total,ghe,index) => {
                                 return total+= ghe.giaVe;
@@ -108,6 +146,7 @@ export default function DatVe(props) {
                         </div>
                         <hr />
                         <div className='text-center'>
+
                             <img src={film.thongTinPhim?.hinhAnh} style={{width:'150px',height:'200px'}} />    
                         </div>
                         <h1 className='text-center'>{film.thongTinPhim?.tenPhim}</h1>

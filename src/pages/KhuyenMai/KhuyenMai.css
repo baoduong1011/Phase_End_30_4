@@ -1,0 +1,98 @@
+.khuyen-mai-main {
+  padding-top:140px;
+  background:url('./bg2.jpg');
+}
+
+.khuyen-mai-main h2 {
+  font-weight: 800;
+}
+
+.khuyen-mai-main p {
+  color: black;
+  font-weight: 400;
+}
+
+
+.khuyen-mai-main #root,#root1,#root2 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+  
+  .khuyen-mai-main .body,.body1,.body2 {
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu,
+      roboto, noto, segoe ui, arial, sans-serif;
+    background: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    padding: 40px;
+  }
+  
+  .khuyen-mai-main #root,#root1,#root2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+  
+  .khuyen-mai-main .card {
+    width: 100%;
+    height: 45ch;
+    background: grey;
+    border-radius: 5px;
+    background-image: url(https://cinestar.com.vn/pictures/c_monday.jpg);
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    border: 15px solid white;
+    padding: 60px;
+  }
+
+  .khuyen-mai-main .card1 {
+    width: 100%;
+    height: 45ch;
+    background: grey;
+    border-radius: 5px;
+    background-image: url(https://cinestar.com.vn/pictures/big-star-_-trang-ch%E1%BB%A7-web.jpg);
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    border: 15px solid white;
+    padding: 60px;
+  }
+
+  .khuyen-mai-main .card2 {
+    width: 100%;
+    height: 45ch;
+    background: grey;
+    border-radius: 5px;
+    background-image: url('https://cinestar.com.vn/pictures/H%C3%ACnh%20n%E1%BB%81n%20CTKM/hssv.jpg');
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    border: 15px solid white;
+    padding: 60px;
+  }
+
+
+  
+  /* .card:hover,.card1:hover {
+    box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+  } */
+
+
+  /* https://cinestar.com.vn/pictures/big-star-_-trang-ch%E1%BB%A7-web.jpghttps://cinestar.com.vn/pictures/big-star-_-trang-ch%E1%BB%A7-web.jpg */

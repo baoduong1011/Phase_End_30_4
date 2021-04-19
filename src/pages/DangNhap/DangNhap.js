@@ -4,6 +4,10 @@ import propsAnimtion1 from '../../animtionPackages/Animation'
 import './css/DangNhap.css';
 import {userLoginService} from '../../services/service'
 import { useSelector } from 'react-redux';
+import Contact from '../../components/contact/Contact';
+import Footer from '../../components/footer/Footer';
+import swal from 'sweetalert';
+import { Redirect } from 'react-router';
 export default function DangNhap(props) {
     const propsAnimtion1 = useSpring({
         opacity:1,
@@ -74,17 +78,36 @@ export default function DangNhap(props) {
             localStorage.setItem('accessToken',res.data.accessToken);
             localStorage.setItem('maLoaiNguoiDung',res.data.maLoaiNguoiDung);
             // console.log(res.data);
-
-            alert(`Hello ${res.data.taiKhoan}`);
-            window.location.reload();
-            props.history.push('/trangchu');
+            swal({
+                title: "Đăng nhập thành công",
+                text: "Chào mừng bạn đến với Film Studio!",
+                icon: "success",
+                button: "OK",
+            })
+            // alert(`Hello ${res.data.taiKhoan}`);
+            // window.location.reload();
+            setTimeout(function() {
+                window.location.replace('/trangchu');
+            },2500)
+            // props.history.push('/trangchu');
         })
         .catch(err => {
-            console.log(err.response.data);
+            let stringNotify = `${err.response.data}`;
+            swal(`${stringNotify}`);
         })
     }
 
-    return (
+    if(localStorage.getItem('taiKhoan')) {
+        swal({
+            title: "Bạn đã đăng nhập",
+            text: "Hãy đăng xuất để đăng nhập lại",
+            icon: "error",
+            button: "OK",
+        })
+        return <Redirect to='/trangchu' />
+    }
+    
+    else return (
         <animated.div style={propsAnimtion1}>
             <div className='main-dang-nhap-web'>
                 <div className='dang-nhap-container'>
@@ -92,7 +115,7 @@ export default function DangNhap(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input onChange={handleChange} type='text' required='required' 
+                                <input autocomplete="off" onChange={handleChange} type='text' required='required' 
                                 name='taiKhoan'
                                  />
                                  <span className='text'>Tài khoản</span>
@@ -105,7 +128,7 @@ export default function DangNhap(props) {
                     <div className='row100'>
                         <div className='col'>
                             <div className='inputBox'>
-                                <input type='password' required='required' name='matKhau'
+                                <input autocomplete="off" type='password' required='required' name='matKhau'
                                 onChange={handleChange}
                                  />
                                  <span className='text'>Mật khẩu</span>
@@ -119,12 +142,12 @@ export default function DangNhap(props) {
                         {userLogin.valid ? <button onClick={() => {
                             handleSubmit()
                         }} className='btn'>Đăng nhập</button> : <button disabled style={{cursor:'not-allowed'}} className='btn'>Đăng nhập</button>}
-
-
-                        
                     </div>
                 </div>
             </div>
+
+            <Contact/>
+            <Footer/>
         </animated.div>
     )
 }

@@ -13,6 +13,11 @@ import {} from './pages/DatVe/DatVe';
 import QuanLyUser from './pages/QuanLyHeThong/QuanLyUser/QuanLyUser';
 import QuanLyFilm from './pages/QuanLyHeThong/QuanLyFilm/QuanLyFilm';
 import QuanLyHeThong from './pages/QuanLyHeThong/QuanLyHeThong';
+import LichSuDatVe from './pages/QuanLyHeThong/LichSuDatVe/LichSuDatVe';
+import KhuyenMai from './pages/KhuyenMai/KhuyenMai';
+import DatBapNuoc from './pages/DatBapNuoc/DatBapNuoc';
+import { LoaderProvider, useLoading, BallTriangle } from '@agney/react-loading';
+import {Audio,SpinningCircles,Circles} from '@agney/react-loading';
 function App() {
       const propsAnimtion1 = useSpring({
         opacity:1,
@@ -23,8 +28,14 @@ function App() {
             duration:3000
         }
       })
+
+      const { containerProps, indicatorEl } = useLoading({
+        loading: true,
+        indicator: <Circles width="50" />,
+      });
+      
   return (
-    <animated.div style={propsAnimtion1}>
+    <animated.div className='main-big-web' style={propsAnimtion1}>
         <BrowserRouter>
         <Header/>
             <Switch>
@@ -36,6 +47,11 @@ function App() {
                 <Route exact path='/quanlyuser' component={QuanLyHeThong} />
                 <Route exact path='/quanlyfilm' component={QuanLyHeThong} />
                 <Route exact path='/quanlyhethong' component={QuanLyHeThong} />
+                <Route exact path='/timkiemnguoidung' component={QuanLyHeThong} />
+                <Route exact path='/datbapnuoc' component={DatBapNuoc} />
+                {/* <Route exact path='/taolichchieu' component={QuanLyHeThong} /> */}
+                <Route exact path='/khuyenmai' component={KhuyenMai} />
+                {/* <Route exact path='/lichsudatve' component={QuanLyHeThong} /> */}
                 <Route exact path='/' component={TrangChu} />
             </Switch>
         </BrowserRouter>

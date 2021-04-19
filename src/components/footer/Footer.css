@@ -46,11 +46,29 @@
 .footer-main ul li:hover:before {
     filter: blur(3px);
     transform: scale(1.2);
-    box-shadow: 0 0 15px #d34400;
+    /* box-shadow: 0 0 15px #d34400; */
 }
 
-.footer-main ul li:hover {
+.footer-main ul .three:hover {
     color: #ffa502;
     box-shadow: 0 0 15px #d34400;
     text-shadow: 0 0 15px #d34400;
+}
+
+.footer-main ul .one:hover {
+    color: #2d5ab3;
+    box-shadow: 0 0 15px #557dcc;
+    text-shadow: 0 0 15px #2d5ab3;
+}
+
+.footer-main ul .two:hover {
+    color: #12266f;
+    box-shadow: 0 0 15px #557dcc;
+    text-shadow: 0 0 15px #2d5ab3;
+}
+
+.footer-main ul .four:hover {
+    color: #ee0909;
+    box-shadow: 0 0 15px rgb(224, 89, 89);
+    text-shadow: 0 0 15px rgb(224, 89, 89);
 }

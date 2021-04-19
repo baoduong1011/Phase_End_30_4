@@ -1,0 +1,51 @@
+.banner-main {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background:black;
+}
+
+.banner-main .text {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    filter: url(#cybersoft);
+}
+
+.banner-main .text h2 {
+    position: relative;
+    color: #ffeb3b;
+    font-weight: 600;
+    font-size: 7em;
+    -webkit-box-reflect: below -10px linear-gradient(transparent,#0008);
+    text-shadow: 0 0 10px #ff8c3b,
+    0 0 40px #ff8c3b
+    0 0 80px #ff8c3b
+    0 0 160px #ff8c3b
+    0 0 240px #ff8c3b
+}
+
+@media (max-width: 966px) {
+    .banner-main .text h2{
+        font-size: 6em;
+    }
+    
+}
+
+@media (max-width: 828px) {
+    .banner-main .text h2{
+        font-size: 5em;
+    }
+}
+
+@media (max-width: 690px) {
+    .banner-main .text h2{
+        font-size: 4em;
+    }
+
+}
+
